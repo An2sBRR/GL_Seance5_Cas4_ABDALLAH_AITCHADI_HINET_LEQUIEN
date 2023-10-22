@@ -11,19 +11,12 @@ public class AlarmeOn extends Etat {
         super(reveil);
         while (true) {
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
-            System.out.println(formatter.format(LocalTime.now()));
-            System.out.println(reveil.getHeureAlarme().toString());
-
+            System.out.println(
+                    "Il est actuellement: " + formatter.format(LocalTime.now()));
             if (formatter.format(LocalTime.now()).equals(reveil.getHeureAlarme().toString())) {
                 reveil.changerEtat(new AlarmeSonne(reveil));
             }
             sleep(1000);
         }
-
-    }
-
-    @Override
-    public void desactiverAlarme() {
-        this.reveil.changerEtat(new AlarmeOff(this.reveil));
     }
 }
