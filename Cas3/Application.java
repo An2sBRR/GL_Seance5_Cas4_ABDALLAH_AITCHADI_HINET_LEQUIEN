@@ -2,7 +2,7 @@ package Cas3;
 
 public class Application {
     public static void main(String[] args) throws InterruptedException {
-        Reveil reveil = new Reveil();
-        reveil.changerEtat(new AlarmeSetup(reveil));
+        Waker reveil = new Waker();
+        reveil.changeState(new AlarmSetup(reveil));
     }
 }

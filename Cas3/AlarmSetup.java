@@ -4,21 +4,21 @@ import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
 
-public class AlarmeSetup extends Etat {
+public class AlarmSetup extends State {
 
-    public AlarmeSetup(Reveil reveil) throws InterruptedException {
-        super(reveil);
+    public AlarmSetup(Waker waker) throws InterruptedException {
+        super(waker);
         try (Scanner scanner = new Scanner(System.in)) {
-            while (reveil.getHeureAlarme() == null) {
+            while (waker.getAlarmHour() == null) {
                 System.out.println("Quelle heure souhaitez-vous parametrer? format Heure:minutes");
-                String heure = scanner.nextLine();
-                if (!heure.matches("^([0-1]?[0-9]|2[0-3]):[0-5][0-9]$")) {
-                    reveil.setHeureAlarme(null);
+                String hour = scanner.nextLine();
+                if (!hour.matches("^([0-1]?[0-9]|2[0-3]):[0-5][0-9]$")) {
+                    waker.setAlarmHour(null);
                     System.out.println("veuillez entrer une valeur correcte");
                 } else {
                     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
-                    reveil.setHeureAlarme(LocalTime.parse(heure, formatter));
-                    reveil.changerEtat(new AlarmeOn(reveil));
+                    waker.setAlarmHour(LocalTime.parse(hour, formatter));
+                    waker.changeState(new AlarmOn(waker));
                 }
             }
         }

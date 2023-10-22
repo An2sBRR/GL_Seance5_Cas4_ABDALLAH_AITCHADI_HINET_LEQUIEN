@@ -5,16 +5,16 @@ import static java.lang.Thread.sleep;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 
-public class AlarmeOn extends Etat {
+public class AlarmOn extends State {
 
-    public AlarmeOn(Reveil reveil) throws InterruptedException {
-        super(reveil);
+    public AlarmOn(Waker waker) throws InterruptedException {
+        super(waker);
         while (true) {
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
             System.out.println(
                     "Il est actuellement: " + formatter.format(LocalTime.now()));
-            if (formatter.format(LocalTime.now()).equals(reveil.getHeureAlarme().toString())) {
-                reveil.changerEtat(new AlarmeSonne(reveil));
+            if (formatter.format(LocalTime.now()).equals(waker.getAlarmHour().toString())) {
+                waker.changeState(new AlarmRings(waker));
             }
             sleep(1000);
         }

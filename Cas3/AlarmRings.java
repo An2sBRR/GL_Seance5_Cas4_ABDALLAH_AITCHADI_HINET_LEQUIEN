@@ -2,10 +2,10 @@ package Cas3;
 
 import java.util.Scanner;
 
-public class AlarmeSonne extends Etat {
+public class AlarmRings extends State {
 
-    public AlarmeSonne(Reveil reveil) throws InterruptedException {
-        super(reveil);
+    public AlarmRings(Waker waker) throws InterruptedException {
+        super(waker);
         Boolean isRinging = true;
         try (Scanner scanner = new Scanner(System.in)) {
             do {
@@ -13,7 +13,7 @@ public class AlarmeSonne extends Etat {
                 System.out.println("Désactiver l'alarme? oui/non");
                 if (scanner.nextLine().equals("oui")) {
                     isRinging = false;
-                    this.reveil.changerEtat(new AlarmeOff(this.reveil));
+                    this.waker.changeState(new AlarmOf(this.waker));
                 }
             } while (isRinging);
         }
