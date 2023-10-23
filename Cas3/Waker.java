@@ -6,7 +6,8 @@ public class Waker {
     private State state;
     private LocalTime alarmHour;
 
-    public Waker() {
+    public Waker() throws InterruptedException {
+        changeState(new AlarmSetup(this));
     }
 
     public void changeState(State newState) {

@@ -13,7 +13,7 @@ public class AlarmRings extends State {
                 System.out.println("Désactiver l'alarme? oui/non");
                 if (scanner.nextLine().equals("oui")) {
                     isRinging = false;
-                    this.waker.changeState(new AlarmOf(this.waker));
+                    this.waker.changeState(new AlarmOff(this.waker));
                 }
             } while (isRinging);
         }
